@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 
 const port = 8000
 
+app.use(express.json())
 
 //Connecting to database
 mongoose.connect(settings.mongoDBUrl).then(() => console.log("Connected to MongoDB"), (err) => console.log(err))
