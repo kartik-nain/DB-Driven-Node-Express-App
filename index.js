@@ -1,15 +1,15 @@
 const express = require('express')
 const app = express()
 
-const settings = require('./config/settings')
 const mongoose = require('mongoose')
 
-const port = 8000
+require('dotenv').config()
+const port = process.env.port
 
 app.use(express.json())
 
 //Connecting to database
-mongoose.connect(settings.mongoDBUrl).then(() => console.log("Connected to MongoDB"), (err) => console.log(err))
+mongoose.connect(process.env.mongoDBUrl).then(() => console.log("Connected to MongoDB"), (err) => console.log(err))
 
 //Importing the sales module 
 const sales = require('./routes/api/sales')
