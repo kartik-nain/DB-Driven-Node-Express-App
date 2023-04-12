@@ -34,20 +34,16 @@ const saleSchema = new mongoose.Schema({
     },
     customer: {
         gender: {
-            type: String,
-            required: true
+            type: String
         },
         age: {
-            type: Number,
-            required: true
+            type: Number
         },
         email: {
-            type: String,
-            required: true
+            type: String
         },
         satisfaction: {
-            type: Number,
-            required: true
+            type: Number
         }
     },
     couponUsed: {
