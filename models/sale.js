@@ -7,7 +7,7 @@
 const mongoose = require('mongoose')
 
 const saleSchema = new mongoose.Schema({
-    sale_date: {
+    saleDate: {
         type: Date,
         required: true
     },
