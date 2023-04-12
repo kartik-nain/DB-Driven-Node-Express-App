@@ -1,17 +1,17 @@
 {{> header }}
-<form action="/api/sales/data" method="post">
+<form action="/api/sales/form/data" method="post">
     <div class="imgcontainer">
         <img src="/images/login.png" alt="Avatar" class="avatar">
     </div>
     <div class="container">
-        <label for="page"><b>Page No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+        <label for="page"><b>Page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
         <input type="text" placeholder="Enter Page No." name="page" required>
         <br>
-        <label for="perpage"><b>Records/Page&nbsp;</b></label>
-        <input type="text" placeholder="Enter Records per page" name="perpage" required>
+        <label for="perPage"><b>Per Page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+        <input type="text" placeholder="Enter Records per page" name="perPage" required>
         <br>
-        <label for="location"><b>Store Location</b></label>
-        <input type="text" placeholder="Enter store location" name="location">
+        <label for="storeLocation"><b>Store Location</b></label>
+        <input type="text" placeholder="Enter store location" name="storeLocation">
         <br>
         <button type="submit">Submit</button>
     </div>

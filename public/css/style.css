@@ -21,8 +21,8 @@ form {
 }
 header{
   background: lightseagreen;
-  padding:70px;
-  
+  text-align: center;
+  color: white;
 }
 /* Full-width inputs */
 input[type=text], input[type=password]{

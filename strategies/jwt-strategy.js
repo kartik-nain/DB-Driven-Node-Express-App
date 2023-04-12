@@ -16,7 +16,7 @@ const key = process.env.key
 // opts is an object literal containing options to control how the token is extracted from the request or verified.
 var opts = {}
 // JWT can be sent in many forms, other method to extract it fromHeader(), fromBodyField(), fromUrlQueryParameter()
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
+opts.jwtFromRequest = ExtractJwt.fromBodyField('token')
 //When you receive a JWT from the client, you can verify that JWT with this that secret key stored on the server.
 opts.secretOrKey = key
 

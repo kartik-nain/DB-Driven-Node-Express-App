@@ -27,6 +27,12 @@ app.use(bodyParser.urlencoded({extended: false}))
 //Connecting to database
 mongoose.connect(process.env.mongoDBUrl).then(() => console.log("Connected to MongoDB"), (err) => console.log(err))
 
+app.get('/', (req, res) => {
+
+    //route where user will enter the JWt token in form
+    res.render('insert-token')
+})
+
 //Importing the sales module 
 const sales = require('./routes/api/sales')
 app.use('/api/sales', sales) //Handling http requests to /api/sales path and associating it with sales module to handle the requests.

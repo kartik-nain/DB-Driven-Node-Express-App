@@ -6,16 +6,36 @@ const passport = require('passport')
 const Sale = require('./../../models/sale')
 
 
-router.get('/getform', (req, res) => {
 
-    //route where user will enter the JWt token in form
-    res.render('jwt_valid')
-})
 
-router.post('/form',  //middleware from passport-jwt
+router.post('/form', passport.authenticate('jwt', { session: false }),  //middleware from passport-jwt
     (req, res) => {
         res.render('form');
     })
+
+router.post('/form/data', celebrate({
+    [Segments.BODY]: {
+        page: Joi.number().integer().required(),
+        perPage: Joi.number().integer().required(),
+        storeLocation: Joi.string().allow('')
+    }
+}), (req, res) => {
+    const page = req.body.page;
+    const perPage = req.body.perPage;
+    const storeLocation = req.body.storeLocation ? { storeLocation: req.body.storeLocation } : {}
+    // calculate the skip value for pagination
+    const skip = (page - 1) * perPage
+
+    Sale.find(storeLocation).skip(skip).limit(perPage)
+        .then(sale => {
+            if (sale) {
+                res.status(200).send(sale)
+            } else {
+                res.status(404).send("Not Found.")
+            }
+        })
+        .catch(err => res.send(err))
+})
 
 // create a new document. URL : /api/sales/
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -104,28 +124,6 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
 
 
 
-router.post('/data', (req, res) => {
-    const page = req.body.page;
-    const perPage = req.body.perpage;
-    const storeLocation = req.body.location;
-    let skip = req.body.skip;
-    // calculate the skip value for pagination
-    skip = (page - 1) * perPage
 
-    Sale.find({ 'storeLocation': storeLocation }).skip(skip).limit(perPage)
-        .then(sale => {
-            if (sale) {
-                /*     res.render('data',
-                 {
-                 title:'Json data',
-                 data:sale
-                 })*/
-                res.status(200).send(sale)
-            } else {
-                res.status(404).send("Not Found.")
-            }
-        })
-        .catch(err => res.send(err))
-})
 
 module.exports = router

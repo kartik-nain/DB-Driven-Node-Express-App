@@ -89,10 +89,9 @@ router.post('/login', (req, res) => {
                                     process.env.key,
                                     {expiresIn: 3600},
                                     (err, token) => {
-                                        console.log(err)
                                         res.json({
                                             success: true,
-                                            token: 'Bearer ' + token
+                                            token: token
                                         })
                                     }
                                 )
@@ -109,19 +108,5 @@ router.post('/login', (req, res) => {
         })
 
 })
-
-// Private route to get all user details
-router.get(
-    '/get',
-    passport.authenticate('jwt', { session: false }), 
-    async(req, res) => {
-    let people_un = []
-    const cursor = await Person.find()
-    cursor.forEach((person) => {
-        people_un.push(person.username)
-    })
-    res.send(people_un)
-})
-
 
 module.exports = router
