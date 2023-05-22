@@ -1,4 +1,4 @@
-﻿# DB-Driven-Node-Express-App
+﻿# Sales Management Web Application
 This project is a web application that provides a Web API for managing sales data. It is built using Node.js, Express, and Mongoose to interact with MongoDB Atlas.
 
 ## Installation
@@ -9,6 +9,12 @@ This project is a web application that provides a Web API for managing sales dat
 
 ## Routes
 The following routes are available:
+  
+### User Authentication API
+* POST /api/auth/register: Registers a new user by creating a new person document in the collection. Requires name, username, and password in the request body.
+* POST /api/auth/login: Authenticates a user by checking the provided username and password against the stored data. Returns a JWT token upon successful login. This JWT token is needed to access the Sales Data API.
+
+### Sales Data API
 * POST /api/sales: This route adds a new "sales" document to the collection using the body of the request and returns the created object/fail message to the client.
 * GET /api/sales: This route accepts the numeric query parameters "page" and "perPage" as well as the string parameter "storeLocation". It returns all "sales" objects for a specific "page" to the client as well as optionally filtering by "storeLocation", if provided.
 * GET /api/sales/:id: This route accepts a route parameter that represents the _id of the desired sales object. It returns a specific "sales" object to the client.
